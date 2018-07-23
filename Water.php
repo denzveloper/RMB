@@ -72,22 +72,31 @@ class Water extends CI_Controller {
                   'prov' => $prov, 'kota' => $kot, 'jalan' => $jln, 'poin' => 0));
 
                 if ($cek1 != FALSE){
+                  $tmp = tempnam('./tmp', 'imgtmp'); // might not work on some systems, specify your temp path if system temp dir is not writeable
+                  file_put_contents($tmp, base64_decode($_POST['img']));
+                  $imginf = getimagesize($tmp); 
+                  $_FILES['userfile'] = array(
+                      'name' => uniqid().'.'.preg_replace('!\w+/!', '', $imginf['mime']),
+                      'tmp_name' => $tmp,
+                      'size'  => filesize($mp),
+                      'error' => UPLOAD_ERR_OK,
+                      'type'  => $imginf['mime'],
+                  );
                   //Configuration Updoad Photos
                   //$prna = time().$mail.$_FILES["profil"]['name']; //Change name of image
                   $config['upload_path'] = './asset/uspic/'; //On "userpic" upload
-                  $config['allowed_types'] = 'jpg|png'; //Jpg and Png Only
+                  $config['allowed_types'] = 'jpg|jpeg|png'; //Jpg and Png Only
                   $config['max_size'] = '2048'; //2MB
-                  $config['max_width']  = '2048'; //max width images
-                  $config['max_height']  = '2048'; //max height images
                   $config['encrypt_name'] = TRUE;
                   //$config['file_name'] = $prna; //set new Name
                   $this->load->library('upload', $config); //load library upload
                   $fnm = null;
 
                   //Photos is detected OK
-                  if ($this->upload->do_upload('img')){
+                  if ($this->upload->do_upload('userfile', true)){
                     //Get Filename
                     $fnm = $this->upload->data('file_name');
+                    unlink($tmp);
                     //Update user table on "Photo" column where Mail as ID
                     $this->waterm->uptabusr(array('surel' => $mail), array('photo' => $fnm));
                   }
@@ -181,6 +190,16 @@ class Water extends CI_Controller {
               $kot = $this->input->post("kot",TRUE);
               $jln = $this->input->post("jln",TRUE);
 
+              $tmp = tempnam('./tmp', 'imgtmp'); // might not work on some systems, specify your temp path if system temp dir is not writeable
+              file_put_contents($tmp, base64_decode($_POST['img']));
+              $imginf = getimagesize($tmp); 
+              $_FILES['userfile'] = array(
+                'name' => uniqid().'.'.preg_replace('!\w+/!', '', $imginf['mime']),
+                'tmp_name' => $tmp,
+                'size'  => filesize($mp),
+                'error' => UPLOAD_ERR_OK,
+                'type'  => $imginf['mime'],
+              );
               //Configuration to Updoad Photos
               $config['upload_path'] = './asset/uspic/'; //On "userpic" upload
               $config['allowed_types'] = 'jpg|png'; //Jpg and Png Only
@@ -205,11 +224,12 @@ class Water extends CI_Controller {
               }
 
               //Photos is detected OK
-              if ($this->upload->do_upload('img')){
+              if ($this->upload->do_upload('userfile', true)){
                 //Deleting Image Profil File
                 if ($del == TRUE){
                   //Delete Photos before
                   unlink("./asset/uspic/$pho");
+                  unlink($tmp);
                 }
 
                 //Get Filename Image
@@ -593,6 +613,10 @@ class Water extends CI_Controller {
             //Fail Validation Because illegal input
             $stat = array('status' => '400','msg' => 'Info is Required!');
           }
+        break;
+
+        case 'interest'://Add or Update Interest
+
         break;
 
         case 'shop': //Get Shop

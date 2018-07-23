@@ -117,7 +117,7 @@ class Waterm extends CI_Model{
         if($query !== FALSE && $query->num_rows() > 0){
               foreach ($query->result_array() as $row) {
               unset($got);
-              $got [] = array('message' => 'レビューはありません');
+              $got [] = array('message' => 'Nothing to Show');
               $row['foto'] = base_url()."asset/plpic/".$row['foto'];
               $hit = $row['id'];
               $get = $this->db->from('review_tempat')->where('id_tempat', $hit)->join('user', 'user.surel = review_tempat.surel')->get();
