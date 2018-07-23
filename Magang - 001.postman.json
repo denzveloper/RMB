@@ -1,0 +1,837 @@
+{
+	"info": {
+		"_postman_id": "0b7edf07-4f37-a47b-88a7-defe1e834327",
+		"name": "Magang - 001",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Android (1) - Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "namadpn",
+							"value": "Octavizankwn",
+							"description": "Nama Depan",
+							"type": "text"
+						},
+						{
+							"key": "namablk",
+							"value": "Denzikwzn",
+							"description": "Nama Akhir",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "adami@air.co",
+							"description": "Alamat Email(Min 6 digit)",
+							"type": "text"
+						},
+						{
+							"key": "mail1",
+							"value": "adami@air.co",
+							"description": "Konfirmasi Email(Min 6 digit)",
+							"type": "text"
+						},
+						{
+							"key": "pass",
+							"value": "1234",
+							"description": "Sandi(Min 4 digit)",
+							"type": "text"
+						},
+						{
+							"key": "pass1",
+							"value": "1234",
+							"description": "Konfirmasi Sandi(Min 4 digit)",
+							"type": "text"
+						},
+						{
+							"key": "tgl",
+							"value": "1998-10-10",
+							"description": "Date Format : YYYY-MM-DD",
+							"type": "text"
+						},
+						{
+							"key": "ngr",
+							"value": "Indonesia",
+							"description": "Negara",
+							"type": "text"
+						},
+						{
+							"key": "prov",
+							"value": "Jawa Barat",
+							"description": "Provinsi/State",
+							"type": "text"
+						},
+						{
+							"key": "kot",
+							"value": "Cirebon",
+							"description": "Kota",
+							"type": "text"
+						},
+						{
+							"key": "jln",
+							"value": "Jl. R.A. Kartini No. 102",
+							"description": "Jalan",
+							"type": "text"
+						},
+						{
+							"key": "img",
+							"description": "Image File (Jpg, Png) Only Max 2MP, 2MB",
+							"type": "file"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "register"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mail",
+							"value": "admin@gmail.com",
+							"type": "text",
+							"description": "Basic Auth"
+						},
+						{
+							"key": "pass",
+							"value": "admin",
+							"type": "text",
+							"description": "Baisc Auth"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "login"
+						}
+					]
+				},
+				"description": "Android Magang (1) - Login"
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - Update Profil",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mail",
+							"value": "admin@gmail.com",
+							"description": "Basic Auth",
+							"type": "text"
+						},
+						{
+							"key": "pass",
+							"value": "admin",
+							"description": "Basic Auth",
+							"type": "text"
+						},
+						{
+							"key": "namadpn",
+							"value": "Bang",
+							"description": "Nama Depan",
+							"type": "text"
+						},
+						{
+							"key": "namablk",
+							"value": "Bung",
+							"description": "Nama Akhir",
+							"type": "text"
+						},
+						{
+							"key": "tgl",
+							"value": "1998-10-10",
+							"description": "Date Format (YYYY-MM-DD)",
+							"type": "text"
+						},
+						{
+							"key": "ngr",
+							"value": "Indonesia",
+							"description": "Negara",
+							"type": "text"
+						},
+						{
+							"key": "prov",
+							"value": "Jawa Barat",
+							"description": "State/Provinsi",
+							"type": "text"
+						},
+						{
+							"key": "kot",
+							"value": "Cirebon",
+							"description": "Kota",
+							"type": "text"
+						},
+						{
+							"key": "jln",
+							"value": "Jl. R.A. Kartini No. 10",
+							"description": "Jalan",
+							"type": "text"
+						},
+						{
+							"key": "img",
+							"description": "Image File (Jpg, Png) Only Max 2MP, 2MB",
+							"type": "file"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=updatepro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "updatepro"
+						}
+					]
+				},
+				"description": "Perbarui profil pengguna"
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - Get Map List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=map",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "map"
+						}
+					]
+				},
+				"description": "Mengambil data tempat"
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - Mengambil Daftar Jualan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=shop",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "shop"
+						}
+					]
+				},
+				"description": "Mengambil data untuk Shop"
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - Show Event List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=showevent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "showevent"
+						}
+					]
+				},
+				"description": "Melihat event yang tersedia"
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - Event share/like",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "2",
+							"description": "id Eventnya",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "admin@gmail.com",
+							"description": "Basic Auth",
+							"type": "text"
+						},
+						{
+							"key": "pass",
+							"value": "admin",
+							"description": "Basic Auth",
+							"type": "text"
+						},
+						{
+							"key": "todo",
+							"value": "2",
+							"description": "1=like, 2=share",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=event-act",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "event-act"
+						}
+					]
+				},
+				"description": "Menghitung berapa banyak sharing sebuah event"
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - Map List",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mail",
+							"value": "123@gmail.com",
+							"description": "basic auth"
+						},
+						{
+							"key": "pass",
+							"value": "1234",
+							"description": "basic auth",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=map",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "map"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - Shopping List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=shop",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "shop"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - Voucer List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=voucer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "voucer"
+						}
+					]
+				},
+				"description": "Ngambil Voucer"
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - Point",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pts",
+							"value": "10",
+							"description": "point",
+							"type": "text"
+						},
+						{
+							"key": "todo",
+							"value": "1",
+							"description": "1= add(+), 2=sub(-)",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "admin@gmail.com",
+							"description": "Basic Auth email",
+							"type": "text"
+						},
+						{
+							"key": "pass",
+							"value": "admin",
+							"description": "Basic Auth password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=poin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "poin"
+						}
+					]
+				},
+				"description": "Menambahkan atau mengurangi poin"
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - Review Action",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "id petanya",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "admin@gmail.com",
+							"description": "Basic Auth",
+							"type": "text"
+						},
+						{
+							"key": "pass",
+							"value": "admin",
+							"description": "Basic Auth",
+							"type": "text"
+						},
+						{
+							"key": "star",
+							"value": "5",
+							"description": "Bintang yang diberikan",
+							"type": "text"
+						},
+						{
+							"key": "komentar",
+							"value": "12",
+							"description": "Komentarmu",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=review",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "review"
+						}
+					]
+				},
+				"description": "Menambah atau editing Review"
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - Edit Mail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mailb",
+							"value": "dendy@gmail.com",
+							"description": "Alamat Email yang dulu",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "123@gmail.com",
+							"description": "Alamat Email Baru(Min 6 digit)",
+							"type": "text"
+						},
+						{
+							"key": "mail1",
+							"value": "123@gmail.com",
+							"description": "Alamat Email Konfirmasi Baru(Min 6 digit)",
+							"type": "text"
+						},
+						{
+							"key": "pass",
+							"value": "admin",
+							"description": "Password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=editmail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "editmail"
+						}
+					]
+				},
+				"description": "Mengubah surat elektronik"
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - Edit Sandi",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mail",
+							"value": "123@gmail.com",
+							"description": "Surat Elektronik",
+							"type": "text"
+						},
+						{
+							"key": "pass",
+							"value": "admin",
+							"description": "Sandi Lama",
+							"type": "text"
+						},
+						{
+							"key": "psn",
+							"value": "1234",
+							"description": "Sandi Baru(Min 4 digit)",
+							"type": "text"
+						},
+						{
+							"key": "psn1",
+							"value": "1234",
+							"description": "Konfirmasi Sandi Baru(Min 4 digit)",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=edpass",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "edpass"
+						}
+					]
+				},
+				"description": "Mengubah sandi menjadi suatu hal yang baru ea.. :v"
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - New Places",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nama",
+							"value": "Warung Klontong",
+							"description": "Nama tempat baru",
+							"type": "text"
+						},
+						{
+							"key": "relasi",
+							"value": "konsumen",
+							"description": "\"pemilik\"/\"konsumen\"(non-kapital)",
+							"type": "text"
+						},
+						{
+							"key": "tipe",
+							"value": "other",
+							"description": "Lihat tabel (interest_list) atau pakai 'other' saja",
+							"type": "text"
+						},
+						{
+							"key": "lon",
+							"value": "-6.273180",
+							"description": "Garis Bujur",
+							"type": "text"
+						},
+						{
+							"key": "lat",
+							"value": "106.739858",
+							"description": "Garis Lintang",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "123@gmail.com",
+							"description": "Basic Auth",
+							"type": "text"
+						},
+						{
+							"key": "pass",
+							"value": "1234",
+							"description": "Basic Auth",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=newplace",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "newplace"
+						}
+					]
+				},
+				"description": "Nambah tempat yang belum ada dipeta"
+			},
+			"response": []
+		},
+		{
+			"name": "Android (1) - Liat data konsumsi",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mail",
+							"value": "123@gmail.com",
+							"description": "basic auth",
+							"type": "text"
+						},
+						{
+							"key": "pass",
+							"value": "1234",
+							"description": "basic auth",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/magang/index.php?do=saved",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"magang",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "do",
+							"value": "saved"
+						}
+					]
+				},
+				"description": "Melihat data konsumsi pengguna yang bersangkutan"
+			},
+			"response": []
+		}
+	]
+}
