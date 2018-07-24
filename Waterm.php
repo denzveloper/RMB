@@ -62,6 +62,35 @@ class Waterm extends CI_Model{
       }
     }
 
+    //Fetching data Country
+    function cofetch(){
+        $this->db->from('country');
+        $query = $this->db->get();
+        if($query !== FALSE && $query->num_rows() > 0){
+            $data = array();
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+        }else{
+            $data = FALSE;
+        }
+        return $data;
+    }
+
+    //Fetching data State/City
+    function scfetch($f1, $f2){
+        $this->db->select('*');
+        $this->db->from('city');
+        $this->db->where($f1);
+        $this->db->order_by($f2);
+        $query = $this->db->get();
+        if($query !== FALSE && $query->num_rows() > 0){
+            return $query->result();
+        }else{
+            return FALSE;
+        }
+    }
+
     function fetchfaf($f1){
         $this->db->from("kesukaan_pengguna");
         $this->db->where($f1);

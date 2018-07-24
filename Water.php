@@ -141,13 +141,13 @@ class Water extends CI_Controller {
                 $kot = $cek->kota;
                 $jln = $cek->jalan;
                 $nbl = $cek->namabelakang;
-                $sav = $cek->saved;
+                $pnt = $cek->poin;
               }
               //JSON data to android. Login is Successfull
               $stat = array('msg' => "Success Login As $ndp",
                 'user' => array('email' => $mail, 'photo' => $pho, 'namadpn' => $ndp, 'namablk' => $nbl,
                   'tgl' => $tgl, 'negara' => $ngr, 'prov' => $pro, 'kota' => $kot, 'jln' => $jln,
-                  'status' => array('poin' => $pnt, 'saved' => $sav)),
+                  'poin' => $pnt),
                 'status' => '200');
             }else{
               //Error JSON fail Login
@@ -616,7 +616,49 @@ class Water extends CI_Controller {
         break;
 
         case 'interest'://Add or Update Interest
+          //code get
+          $sta = $this->input->post("state",TRUE);
+          $cty = $this->input->post("city",TRUE);
+          
+        break;
 
+        case 'geo'://get geo Country
+          //code get
+          $sta = $this->input->post("state",TRUE);
+          $cty = $this->input->post("city",TRUE);
+
+          if(isset($cty)){
+            $get = $this->waterm->scfetch(array('District' => $cty), 'Name');
+            //Filter
+            $hit = array();
+            $x = null;
+            if($get != FALSE){
+              foreach($get as $get){
+                $hit[] = $get->Name;
+              }
+              $stat = array('status' => '200', 'data' => $hit, 'msg' => 'OK' );
+            }else{
+              $stat = array('status' => '200', 'msg' => 'NO DATA' );
+            }
+          }elseif(isset($sta)){
+            $get = $this->waterm->scfetch(array('CountryCode' => $sta), 'District');
+            //Filter
+            $hit = array();
+            $x = null;
+            if($get != FALSE){
+              foreach($get as $get){
+                if($x != $get->District){
+                  $hit[] = $get->District;
+                  $x = $get->District;
+                }
+              }
+            $stat = array('status' => '200', 'data' => $hit, 'msg' => 'OK' );
+            }else{
+              $stat = array('status' => '200', 'msg' => 'NO DATA' ); 
+            }
+          }else{
+            $stat = array('status' => '200', 'data' => $this->waterm->cofetch(), 'msg' => 'OK' );
+          }
         break;
 
         case 'shop': //Get Shop
