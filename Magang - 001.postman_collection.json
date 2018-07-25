@@ -88,7 +88,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=register",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=register",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -96,7 +96,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -131,7 +132,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=login",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=login",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -139,7 +140,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -223,7 +225,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=updatepro",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=updatepro",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -231,7 +233,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -251,7 +254,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=map",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=map",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -259,7 +262,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -273,41 +277,13 @@
 			"response": []
 		},
 		{
-			"name": "Android (1) - Mengambil Daftar Jualan",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=shop",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"htdocs",
-						"magang",
-						"index.php"
-					],
-					"query": [
-						{
-							"key": "do",
-							"value": "shop"
-						}
-					]
-				},
-				"description": "Mengambil data untuk Shop"
-			},
-			"response": []
-		},
-		{
 			"name": "Android (1) - Show Event List",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=showevent",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=showevent",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -315,7 +291,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -363,7 +340,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=event-act",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=event-act",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -371,7 +348,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -406,7 +384,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=map",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=map",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -414,7 +392,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -433,7 +412,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=shop",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=shop",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -441,7 +420,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -460,7 +440,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=voucer",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=voucer",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -468,7 +448,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -516,7 +497,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=poin",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=poin",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -524,7 +505,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -578,7 +560,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=review",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=review",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -586,7 +568,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -634,7 +617,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=editmail",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=editmail",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -642,7 +625,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -690,7 +674,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=edpass",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=edpass",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -698,7 +682,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -776,7 +761,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=newplace",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=newplace",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -784,7 +769,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -820,7 +806,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=saved",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=saved",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -828,7 +814,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -864,7 +851,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=geo",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=geo",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -872,7 +859,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{
@@ -934,7 +922,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost/htdocs/magang/index.php?do=interest",
+					"raw": "http://localhost/htdocs/magang/index.php/water?do=interest",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -942,7 +930,8 @@
 					"path": [
 						"htdocs",
 						"magang",
-						"index.php"
+						"index.php",
+						"water"
 					],
 					"query": [
 						{

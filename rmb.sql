@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 25, 2018 at 11:03 AM
+-- Generation Time: Jul 25, 2018 at 04:42 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.1.16
 
@@ -4573,6 +4573,30 @@ CREATE TABLE `suka_event` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_session`
+--
+
+CREATE TABLE `tbl_session` (
+  `id` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `data` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_session`
+--
+
+INSERT INTO `tbl_session` (`id`, `ip_address`, `timestamp`, `data`) VALUES
+('37pp7ddanc87sstkrnvqkpb4nsrdk7qs', '::1', 1532502266, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323530323236363b),
+('ssh1rkslsgrie13g4mcuvtjgrjvjk1at', '::1', 1532502570, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323530323537303b),
+('e6c3k6v2ga8qnk01ktplmcvdccsgo20k', '::1', 1532503046, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323530333034363b),
+('3312m69kruad2i13sqgemicos8mmhehe', '::1', 1532503380, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323530333338303b),
+('fdv5v68gimebebnu128kd0qbg7phm36t', '::1', 1532503808, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323530333830383b);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tempatisi`
 --
 
@@ -4652,6 +4676,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`surel`, `namadepan`, `namabelakang`, `sandi`, `lahir`, `negara`, `prov`, `kota`, `jalan`, `photo`, `poin`, `level`) VALUES
 ('123@gmail.com', 'Bang', 'Bung', '1234', '1998-10-10', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 10', '99ca44bfef0891750d988c4908b6bbce.png', 10, '1'),
 ('adami@air.co', 'Octavizankwn', 'Denzikwzn', '1234', '1998-10-10', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 102', 'default.png', 0, '1'),
+('adami@air.co.li', 'Octavizankwnk', 'Denzikwzn', '1234', '1998-10-10', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 102', 'f132d2c928bd9d97b278b2a7ece3f8c1.jpeg', 0, '1'),
+('admin@gmail.com', 'Adminku', 'Adminku', '1234', '2018-07-03', 'Indonesia', 'Jawa Barat', 'Subang', 'Jalan R.A. Kartini No. 17', 'default.png', 0, '0'),
 ('oksareinaldi@gmail.com', 'Bahrainsyah', 'Oksareinaldi', '1234', '1998-10-31', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 102', '353b634684c7181af61c7d8f5e028959.jpg', 69, '1');
 
 -- --------------------------------------------------------
@@ -4754,6 +4780,12 @@ ALTER TABLE `suka_event`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_event` (`id_event`),
   ADD KEY `surel` (`surel`);
+
+--
+-- Indexes for table `tbl_session`
+--
+ALTER TABLE `tbl_session`
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
 
 --
 -- Indexes for table `tempatisi`
