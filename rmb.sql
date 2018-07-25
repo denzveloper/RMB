@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 24, 2018 at 11:21 AM
+-- Generation Time: Jul 25, 2018 at 11:03 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.1.16
 
@@ -4461,14 +4461,6 @@ CREATE TABLE `kesukaan_pengguna` (
   `interest` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `kesukaan_pengguna`
---
-
-INSERT INTO `kesukaan_pengguna` (`id`, `surel`, `interest`) VALUES
-(2, '123@gmail.com', 'restaurant'),
-(3, '123@gmail.com', 'other');
-
 -- --------------------------------------------------------
 
 --
@@ -4500,6 +4492,15 @@ CREATE TABLE `pic_tmpt_baru` (
   `id_tempat` int(128) NOT NULL,
   `image` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pic_tmpt_baru`
+--
+
+INSERT INTO `pic_tmpt_baru` (`id`, `id_tempat`, `image`) VALUES
+(1, 1, '0ad35a174df15db33195afd37ac48773.jpeg'),
+(3, 1, '61fb659dd7523a917e476b8b0c670235.jpeg'),
+(4, 1, 'e31d1a742601c3b601656998a97c1af2.jpeg');
 
 -- --------------------------------------------------------
 
@@ -4616,6 +4617,13 @@ CREATE TABLE `tempat_baru` (
   `pendaftar` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `tempat_baru`
+--
+
+INSERT INTO `tempat_baru` (`id_tempat`, `nama`, `relasi`, `tipe`, `longitude`, `latitude`, `pendaftar`) VALUES
+(1, 'Warung Klontong', 'konsumen', 'other', -6.27318, 106.739858, '123@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -4633,18 +4641,18 @@ CREATE TABLE `user` (
   `kota` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jalan` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `photo` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.png',
-  `poin` int(12) NOT NULL DEFAULT '0'
+  `poin` int(12) NOT NULL DEFAULT '0',
+  `level` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`surel`, `namadepan`, `namabelakang`, `sandi`, `lahir`, `negara`, `prov`, `kota`, `jalan`, `photo`, `poin`) VALUES
-('123@gmail.com', 'Bang', 'Bung', '1234', '1998-10-10', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 10', '99ca44bfef0891750d988c4908b6bbce.png', 10),
-('adami@air.co', 'Octavizankwn', 'Denzikwzn', '1234', '1998-10-10', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 102', 'd03151c053a50cecb253aa5c3fd2c268.png', 0),
-('adami@air.co.li', 'Octavizankwnk', 'Denzikwzn', '1234', '1998-10-10', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 102', '1f6cdc2a59782d963907ab097e962611.jpeg', 0),
-('oksareinaldi@gmail.com', 'Bahrainsyah', 'Oksareinaldi', '1234', '1998-10-31', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 102', '353b634684c7181af61c7d8f5e028959.jpg', 69);
+INSERT INTO `user` (`surel`, `namadepan`, `namabelakang`, `sandi`, `lahir`, `negara`, `prov`, `kota`, `jalan`, `photo`, `poin`, `level`) VALUES
+('123@gmail.com', 'Bang', 'Bung', '1234', '1998-10-10', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 10', '99ca44bfef0891750d988c4908b6bbce.png', 10, '1'),
+('adami@air.co', 'Octavizankwn', 'Denzikwzn', '1234', '1998-10-10', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 102', 'default.png', 0, '1'),
+('oksareinaldi@gmail.com', 'Bahrainsyah', 'Oksareinaldi', '1234', '1998-10-31', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 102', '353b634684c7181af61c7d8f5e028959.jpg', 69, '1');
 
 -- --------------------------------------------------------
 
@@ -4721,7 +4729,7 @@ ALTER TABLE `konsumsi`
 --
 ALTER TABLE `pic_tmpt_baru`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_tempat` (`id_tempat`);
+  ADD KEY `id_tempat` (`id_tempat`);
 
 --
 -- Indexes for table `review_tempat`
@@ -4759,8 +4767,8 @@ ALTER TABLE `tempatisi`
 --
 ALTER TABLE `tempat_baru`
   ADD PRIMARY KEY (`id_tempat`),
-  ADD KEY `pendaftar` (`pendaftar`),
-  ADD KEY `tipe` (`tipe`);
+  ADD KEY `tipe` (`tipe`),
+  ADD KEY `pendaftar` (`pendaftar`);
 
 --
 -- Indexes for table `user`
@@ -4800,13 +4808,13 @@ ALTER TABLE `jual`
 -- AUTO_INCREMENT for table `kesukaan_pengguna`
 --
 ALTER TABLE `kesukaan_pengguna`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pic_tmpt_baru`
 --
 ALTER TABLE `pic_tmpt_baru`
-  MODIFY `id` int(128) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(128) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `review_tempat`
@@ -4836,7 +4844,7 @@ ALTER TABLE `tempatisi`
 -- AUTO_INCREMENT for table `tempat_baru`
 --
 ALTER TABLE `tempat_baru`
-  MODIFY `id_tempat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tempat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `voucer`
@@ -4904,8 +4912,8 @@ ALTER TABLE `tempatisi`
 -- Constraints for table `tempat_baru`
 --
 ALTER TABLE `tempat_baru`
-  ADD CONSTRAINT `tempat_baru_ibfk_1` FOREIGN KEY (`pendaftar`) REFERENCES `user` (`surel`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tempat_baru_ibfk_2` FOREIGN KEY (`tipe`) REFERENCES `interest_list` (`nama`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tempat_baru_ibfk_2` FOREIGN KEY (`tipe`) REFERENCES `interest_list` (`nama`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tempat_baru_ibfk_3` FOREIGN KEY (`pendaftar`) REFERENCES `user` (`surel`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

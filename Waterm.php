@@ -8,6 +8,7 @@ class Waterm extends CI_Model{
       $this->db->from('user');
       $this->db->where($f1);
       $this->db->where($f2);
+      $this->db->where('level', '1');
       $this->db->limit(1);
       $query = $this->db->get();
       if ($query->num_rows() == 0) {
@@ -69,7 +70,7 @@ class Waterm extends CI_Model{
         if($query !== FALSE && $query->num_rows() > 0){
             $data = array();
             foreach ($query->result() as $row) {
-                $data[] = $row;
+                $data[] = array('country' => $row->Name);
             }
         }else{
             $data = FALSE;
@@ -294,4 +295,46 @@ class Waterm extends CI_Model{
         }
     }
 
+    //Fetching data Interest
+    function infetch($f1, $f2 = FALSE){
+        $this->db->from($f1);
+        if($f2 != FALSE){
+            $this->db->where($f2);
+        }
+        $query = $this->db->get();
+        if($query !== FALSE && $query->num_rows() > 0){
+            $data = array();
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+        }else{
+            $data = FALSE;
+        }
+        return $data;
+    }
+
+    //Add Interest
+    function addinter($f1){
+        $this->db->insert('kesukaan_pengguna', $f1);
+        $query = $this->db->affected_rows();
+        if ($query == 0) {
+            return FALSE;
+        }else{
+            return $query;
+        }
+    }
+
+    //Delete Interest
+    function delinter($f1){
+        $this->db->where($f1);
+        $this->db->delete('kesukaan_pengguna');
+        $query = $this->db->affected_rows();
+        if ($query == 0) {
+            return FALSE;
+        }else{
+            return $query;
+        }
+    }
+
 }
+//End Of File -> Made By: DzEN/DzEN <-

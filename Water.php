@@ -69,16 +69,16 @@ class Water extends CI_Controller {
                 //Save to database
                 $cek1 = $this->waterm->reg(array('surel' => $mail, 'namadepan' => $ndp,
                   'namabelakang' => $nbl, 'sandi' => $pass, 'lahir' => $tgl, 'negara' => $ngr,
-                  'prov' => $prov, 'kota' => $kot, 'jalan' => $jln, 'poin' => 0));
+                  'prov' => $prov, 'kota' => $kot, 'jalan' => $jln, 'poin' => 0, 'level' => '1'));
 
                 if ($cek1 != FALSE){
-                  $tmp = tempnam('./tmp', 'imgtmp'); // might not work on some systems, specify your temp path if system temp dir is not writeable
+                  $tmp = tempnam('./tmp', 'imgprotmp'); // might not work on some systems, specify your temp path if system temp dir is not writeable
                   file_put_contents($tmp, base64_decode($_POST['img']));
                   $imginf = getimagesize($tmp); 
                   $_FILES['userfile'] = array(
                       'name' => uniqid().'.'.preg_replace('!\w+/!', '', $imginf['mime']),
                       'tmp_name' => $tmp,
-                      'size'  => filesize($mp),
+                      'size'  => filesize($tmp),
                       'error' => UPLOAD_ERR_OK,
                       'type'  => $imginf['mime'],
                   );
@@ -190,13 +190,13 @@ class Water extends CI_Controller {
               $kot = $this->input->post("kot",TRUE);
               $jln = $this->input->post("jln",TRUE);
 
-              $tmp = tempnam('./tmp', 'imgtmp'); // might not work on some systems, specify your temp path if system temp dir is not writeable
+              $tmp = tempnam('./tmp', 'imgprotmp'); // might not work on some systems, specify your temp path if system temp dir is not writeable
               file_put_contents($tmp, base64_decode($_POST['img']));
               $imginf = getimagesize($tmp); 
               $_FILES['userfile'] = array(
                 'name' => uniqid().'.'.preg_replace('!\w+/!', '', $imginf['mime']),
                 'tmp_name' => $tmp,
-                'size'  => filesize($mp),
+                'size'  => filesize($tmp),
                 'error' => UPLOAD_ERR_OK,
                 'type'  => $imginf['mime'],
               );
@@ -416,7 +416,7 @@ class Water extends CI_Controller {
           }
         break;
 
-        case 'newplace'://Create New Place
+        case 'newplace'://Create New Place map
           //Values requipment here
           $this->form_validation->set_rules('nama', 'nama', 'required');
           $this->form_validation->set_rules('relasi', 'relasi', 'required');
@@ -425,6 +425,7 @@ class Water extends CI_Controller {
           $this->form_validation->set_rules('lat', 'latitude', 'required');
           $this->form_validation->set_rules('mail', 'mail', 'required');
           $this->form_validation->set_rules('pass', 'pass', 'required');
+          $this->form_validation->set_rules('img[]', 'Image', 'required');
 
           if ($this->form_validation->run() == TRUE){
             $nam = $this->input->post("nama",TRUE);
@@ -434,6 +435,7 @@ class Water extends CI_Controller {
             $lat = $this->input->post("lat",TRUE);
             $mail = $this->input->post("mail",TRUE);
             $pass = $this->input->post("pass",TRUE);
+            $img = $this->input->post("img",TRUE);
 
             //Validation Is OK
             $cek = $this->waterm->login(array('surel' => $mail),array('sandi' => $pass));
@@ -444,17 +446,52 @@ class Water extends CI_Controller {
               $cek1 = $this->waterm->chsm('tempat_baru', array('longitude' => $lon),array('latitude' => $lat));
               $cek2 = $this->waterm->chsm('tempatisi', array('longitude' => $lon),array('latitude' => $lat));
               
-              if($cek1 != FALSE && $cek2 != FALSE){
+              if($cek1 == FALSE && $cek2 == FALSE){
                 //cek the tag of place
                 $cek3 = $this->waterm->chkreg('interest_list', array('nama' => $typ));
                 
-                if($cek3 != FALSE){
+                if($cek3 == FALSE){
                   //add place to database
                   $cek4 = $this->waterm->addsm('tempat_baru', array('nama' => $nam, 'relasi' => $rel, 'tipe' => $typ, 'longitude' => $lon, 'latitude' => $lat, 'pendaftar' => $mail));
+                  $id = $this->waterm->getail('tempat_baru', array('nama' => $nam, 'relasi' => $rel, 'tipe' => $typ, 'longitude' => $lon, 'latitude' => $lat, 'pendaftar' => $mail))->id_tempat;
+                  //upload image and save name to 'pic_tmpt_baru'
+                  $x = 0;
+                  $img = $_POST['img'];
+                  while(isset($img[$x])){
+                    //This For Upload Image
+                    $tmp = tempnam('./tmp', 'imgmaptmp'); // might not work on some systems, specify your temp path if system temp dir is not writeable
+                    file_put_contents($tmp, base64_decode($img[$x]));
+                    $imginf = getimagesize($tmp); 
+                    $_FILES['userfile'] = array(
+                      'name' => uniqid().'.'.preg_replace('!\w+/!', '', $imginf['mime']),
+                      'tmp_name' => $tmp,
+                      'size'  => filesize($tmp),
+                      'error' => UPLOAD_ERR_OK,
+                      'type'  => $imginf['mime'],
+                    );
+                    //Configuration Updoad Photos
+                    //$prna = time().$mail.$_FILES["profil"]['name']; //Change name of image
+                    $config['upload_path'] = './asset/uspic/'; //On "userpic" upload
+                    $config['allowed_types'] = 'jpg|jpeg'; //Jpg/Jpeg Only
+                    $config['max_size'] = '2048'; //2MB
+                    $config['encrypt_name'] = TRUE;
+                    //$config['file_name'] = $prna; //set new Name
+                    $this->load->library('upload', $config); //load library upload
+                    $fnm = null;
 
+                    //Photos is detected OK
+                    if ($this->upload->do_upload('userfile', true)){
+                      //Get Filename
+                      $fnm = $this->upload->data('file_name');
+                      unlink($tmp);
+                      //Update user table on "Photo" column where Mail as ID
+                      $this->waterm->addsm('pic_tmpt_baru', array('id_tempat' => $id, 'image' => $fnm));
+                    }
+                    $x++;
+                  }
                   if($cek4 != FALSE){
                     //Ok
-                    $stat = array('status' => '200','msg' => "$nam Success added, This can take few days to show point!");
+                    $stat = array('status' => '200','msg' => "$nam Success added! This can take few days to show point map.");
                   }else{
                     //Error Adding
                     $stat = array('status' => '400','msg' => 'Internal Server Error!');
@@ -616,10 +653,57 @@ class Water extends CI_Controller {
         break;
 
         case 'interest'://Add or Update Interest
-          //code get
-          $sta = $this->input->post("state",TRUE);
-          $cty = $this->input->post("city",TRUE);
-          
+          //Validation check
+          $this->form_validation->set_rules('mail', 'Surel', 'required');
+          $this->form_validation->set_rules('pass', 'Password', 'required');
+
+          if($this->form_validation->run() == TRUE){
+            //Get from Post
+            $mail = $this->input->post("mail",TRUE);
+            $pass = $this->input->post("pass",TRUE);
+            $lst = $this->input->post("list",TRUE);
+            $chk = $this->input->post("chk",TRUE);
+
+            //Check Login
+            $cek = $this->waterm->login(array('surel' => $mail), array('sandi' => $pass));
+            if($cek != FALSE){
+              if(isset($chk)){
+                //just cek
+                $get = $this->waterm->infetch('kesukaan_pengguna', array('surel' => $mail));
+                $hit = array();
+                foreach($get as $get){
+                  $hit[] = $get->interest;
+                }
+                $it = array();
+                $all = $this->waterm->infetch('interest_list');
+                foreach($all as $all){
+                  $it[] = $all->nama;
+                }
+                $stat = array('status' => '200', 'data' => array('all' => $it, 'user' => $hit) , 'msg' => 'OK' );
+              }else{
+                //User OK
+                $this->waterm->delinter(array('surel' => $mail));
+                $x = 0;
+                while(isset($lst[$x])){
+                  //code
+                  $hit = $lst[$x];
+                  $cek1 = $this->waterm->infetch('kesukaan_pengguna', array('surel' => $mail, 'interest' => $hit));
+                  if($cek1 == FALSE){
+                    $this->waterm->addinter(array('surel' => $mail, 'interest' => $hit));
+                  }
+                  $x++;
+                }
+                //Whatever Ok or no Is Saved
+                $stat = array('status' => '400', 'msg' => "Done!");
+              }
+            }else{
+              //User Unknown
+              $stat = array('status' => '400', 'msg' => "You're Not Logged in!");
+            }
+          }else{
+            //Requipment is min
+            $stat = array('status' => '400', 'msg' => 'Failed requipment!');
+          }
         break;
 
         case 'geo'://get geo Country
@@ -628,35 +712,46 @@ class Water extends CI_Controller {
           $cty = $this->input->post("city",TRUE);
 
           if(isset($cty)){
+            //search the city with filter of district
             $get = $this->waterm->scfetch(array('District' => $cty), 'Name');
-            //Filter
             $hit = array();
             $x = null;
+            //Check Is Avaiable?
             if($get != FALSE){
+              //get data
               foreach($get as $get){
-                $hit[] = $get->Name;
+                $hit[] = array("city" => $get->Name);
               }
+              //Sent data
               $stat = array('status' => '200', 'data' => $hit, 'msg' => 'OK' );
             }else{
+              //No data will send error
               $stat = array('status' => '200', 'msg' => 'NO DATA' );
             }
           }elseif(isset($sta)){
-            $get = $this->waterm->scfetch(array('CountryCode' => $sta), 'District');
-            //Filter
+            //search the city with filter of country
+            $a = $this->waterm->getail('country', array('Name' => $sta));
+            $get = $this->waterm->scfetch(array('CountryCode' => $a->Code), 'District');
             $hit = array();
             $x = null;
+            //Check Is Avaiable?
             if($get != FALSE){
+              //get data
               foreach($get as $get){
+                //Selecting no same data sent
                 if($x != $get->District){
-                  $hit[] = $get->District;
+                  $hit[] = array("state" => $get->District);
                   $x = $get->District;
                 }
               }
-            $stat = array('status' => '200', 'data' => $hit, 'msg' => 'OK' );
+              //Sent data
+              $stat = array('status' => '200', 'data' => $hit, 'msg' => 'OK' );
             }else{
+              //No data error
               $stat = array('status' => '200', 'msg' => 'NO DATA' ); 
             }
           }else{
+            //Sent Country data
             $stat = array('status' => '200', 'data' => $this->waterm->cofetch(), 'msg' => 'OK' );
           }
         break;
