@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 25, 2018 at 04:42 PM
+-- Generation Time: Jul 26, 2018 at 11:34 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.1.16
 
@@ -4452,6 +4452,24 @@ INSERT INTO `jual` (`id`, `nama`, `detail`, `url`, `harga`, `harga_poin`, `ambil
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kepemilikan`
+--
+
+CREATE TABLE `kepemilikan` (
+  `surel` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_tempat` int(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `kepemilikan`
+--
+
+INSERT INTO `kepemilikan` (`surel`, `id_tempat`) VALUES
+('admin@gmail.com', 5);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kesukaan_pengguna`
 --
 
@@ -4588,11 +4606,13 @@ CREATE TABLE `tbl_session` (
 --
 
 INSERT INTO `tbl_session` (`id`, `ip_address`, `timestamp`, `data`) VALUES
-('37pp7ddanc87sstkrnvqkpb4nsrdk7qs', '::1', 1532502266, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323530323236363b),
-('ssh1rkslsgrie13g4mcuvtjgrjvjk1at', '::1', 1532502570, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323530323537303b),
-('e6c3k6v2ga8qnk01ktplmcvdccsgo20k', '::1', 1532503046, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323530333034363b),
-('3312m69kruad2i13sqgemicos8mmhehe', '::1', 1532503380, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323530333338303b),
-('fdv5v68gimebebnu128kd0qbg7phm36t', '::1', 1532503808, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323530333830383b);
+('rbujirjdap1bbu43dojgjr0ilssl9454', '::1', 1532576114, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323537363131343b),
+('jn74vtasj60euv9ksiulq3imr8df2vvh', '::1', 1532576623, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323537363632333b),
+('ng0mf9h0rd93p70fpqnmgp3vr7emvb24', '::1', 1532577111, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323537373131313b),
+('g6olql7t8idp4mce9adkg1jf6lndfcff', '::1', 1532577655, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323537373635353b),
+('nu8vg0c6643t9duu6gm3vd1i6qmq0e1u', '::1', 1532578270, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323537383237303b),
+('dlj8tu9o92inmt3msl3kinv59a3on7ng', '::1', 1532579227, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323537393232373b6c6f676765645f696e7c623a313b6d61696c7c733a31333a2261626340676d61696c2e636f6d223b666e616d7c733a383a22436f64656c616273223b6c6e616d7c733a353a2241646d696e223b6c767c733a313a2230223b),
+('del1fanomg4fpge2n4a5cdmg2r6etje8', '::1', 1532579520, 0x5f5f63695f6c6173745f726567656e65726174657c693a313533323537393333353b);
 
 -- --------------------------------------------------------
 
@@ -4666,7 +4686,7 @@ CREATE TABLE `user` (
   `jalan` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `photo` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.png',
   `poin` int(12) NOT NULL DEFAULT '0',
-  `level` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1'
+  `level` enum('0','1','2') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '2'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -4674,11 +4694,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`surel`, `namadepan`, `namabelakang`, `sandi`, `lahir`, `negara`, `prov`, `kota`, `jalan`, `photo`, `poin`, `level`) VALUES
-('123@gmail.com', 'Bang', 'Bung', '1234', '1998-10-10', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 10', '99ca44bfef0891750d988c4908b6bbce.png', 10, '1'),
-('adami@air.co', 'Octavizankwn', 'Denzikwzn', '1234', '1998-10-10', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 102', 'default.png', 0, '1'),
-('adami@air.co.li', 'Octavizankwnk', 'Denzikwzn', '1234', '1998-10-10', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 102', 'f132d2c928bd9d97b278b2a7ece3f8c1.jpeg', 0, '1'),
-('admin@gmail.com', 'Adminku', 'Adminku', '1234', '2018-07-03', 'Indonesia', 'Jawa Barat', 'Subang', 'Jalan R.A. Kartini No. 17', 'default.png', 0, '0'),
-('oksareinaldi@gmail.com', 'Bahrainsyah', 'Oksareinaldi', '1234', '1998-10-31', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 102', '353b634684c7181af61c7d8f5e028959.jpg', 69, '1');
+('123@gmail.com', 'Bang', 'Bung', '1234', '1998-10-10', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 10', '99ca44bfef0891750d988c4908b6bbce.png', 10, '2'),
+('abc@gmail.com', 'Codelabs', 'Admin', 'admin', '2018-07-26', 'Indonesia', 'Banten', 'Tangerang Selatan', 'Mandar III', 'default.png', 0, '0'),
+('adami@air.co', 'Octavizankwn', 'Denzikwzn', '1234', '1998-10-10', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 102', 'default.png', 0, '2'),
+('adami@air.co.li', 'Octavizankwnk', 'Denzikwzn', '1234', '1998-10-10', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 102', 'f132d2c928bd9d97b278b2a7ece3f8c1.jpeg', 0, '2'),
+('admin@gmail.com', 'Adminku', 'Adminku', '1234', '2018-07-03', 'Indonesia', 'Jawa Barat', 'Subang', 'Jalan R.A. Kartini No. 17', 'default.png', 0, '1'),
+('oksareinaldi@gmail.com', 'Bahrainsyah', 'Oksareinaldi', '1234', '1998-10-31', 'Indonesia', 'Jawa Barat', 'Cirebon', 'Jl. R.A. Kartini No. 102', '353b634684c7181af61c7d8f5e028959.jpg', 69, '2');
 
 -- --------------------------------------------------------
 
@@ -4735,6 +4756,13 @@ ALTER TABLE `interest_list`
 --
 ALTER TABLE `jual`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kepemilikan`
+--
+ALTER TABLE `kepemilikan`
+  ADD UNIQUE KEY `surel` (`surel`),
+  ADD UNIQUE KEY `id_tempat` (`id_tempat`);
 
 --
 -- Indexes for table `kesukaan_pengguna`
@@ -4893,6 +4921,13 @@ ALTER TABLE `voucer`
 --
 ALTER TABLE `city`
   ADD CONSTRAINT `city_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`);
+
+--
+-- Constraints for table `kepemilikan`
+--
+ALTER TABLE `kepemilikan`
+  ADD CONSTRAINT `kepemilikan_ibfk_1` FOREIGN KEY (`surel`) REFERENCES `user` (`surel`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kepemilikan_ibfk_2` FOREIGN KEY (`id_tempat`) REFERENCES `tempatisi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `kesukaan_pengguna`

@@ -9,7 +9,7 @@ class Waterm extends CI_Model{
       $this->db->from('user');
       $this->db->where($f1);
       $this->db->where($f2);
-      $this->db->where('level', '1');
+      $this->db->where('level', '2');
       $this->db->limit(1);
       $query = $this->db->get();
       if ($query->num_rows() == 0) {

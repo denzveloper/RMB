@@ -9,7 +9,7 @@ class Loginm extends CI_Model{
         $this->db->from('user');
         $this->db->where($f1);
         $this->db->where($f2);
-        $this->db->where('level', '0');
+        $this->db->where('level <', '2');
         $this->db->limit(1);
         $query = $this->db->get();
         if ($query->num_rows() == 0) {
@@ -22,5 +22,10 @@ class Loginm extends CI_Model{
     //Function check access
     function chksess(){
         return $this->session->userdata('mail');
+    }
+
+    function chklp($add)
+    {
+        # code...
     }
 }

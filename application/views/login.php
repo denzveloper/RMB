@@ -16,10 +16,9 @@
 </head>
 <body>
     <div class="content">
-        <h2>Refill My Bottle</h2>
-        <h4>To sign in, a registered account is needed</h4>
+        <h1>Refill My Bottle/Admin</h1>
+        <h4>To sign in, a registered account is needed.</h4>
         <form method="POST" action="<?php echo base_url('index.php/login'); ?>">
-            <?php if(isset($error)) { echo $error; }; ?>
             <table frame="box">
                 <tr>
                     <td>Email</td>
@@ -34,6 +33,8 @@
                 </tr>
             </table>
         </form>
+        <p>This Login only for Owner or Administrator.</p>
     </div>
 </body>
+<?php if(isset($error)) { ?> <script> alert("<?php echo $error;?>");</script> <?php } ?>
 </html>

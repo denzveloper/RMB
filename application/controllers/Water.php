@@ -69,7 +69,7 @@ class Water extends CI_Controller {
                 //Save to database
                 $cek1 = $this->waterm->reg(array('surel' => $mail, 'namadepan' => $ndp,
                   'namabelakang' => $nbl, 'sandi' => $pass, 'lahir' => $tgl, 'negara' => $ngr,
-                  'prov' => $prov, 'kota' => $kot, 'jalan' => $jln, 'poin' => 0, 'level' => '1'));
+                  'prov' => $prov, 'kota' => $kot, 'jalan' => $jln, 'poin' => 0, 'level' => '2'));
 
                 if ($cek1 != FALSE){
                   $tmp = tempnam('./tmp', 'imgprotmp'); // might not work on some systems, specify your temp path if system temp dir is not writeable

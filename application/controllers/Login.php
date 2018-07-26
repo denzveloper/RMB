@@ -41,9 +41,13 @@ class Login extends CI_Controller {
                     $this->session->set_userdata($sesar);
     	            redirect('dashboard/');
                 }else{
-                    //
                     $data['error'] = 'Username or Password Wrong!';
-                		$this->load->view('login', $data);
+                    $this->load->model('waterm');
+                    $cek = $this->waterm->login(array('surel' => $mail), array('sandi' => $pass));
+                    if ($cek != FALSE){
+                        $data['error'] = 'Sorry, This Platform for Administrator only!\nYou only can use on Platform Mobile app!';
+                    }
+                	$this->load->view('login', $data);
                 }
             }else{
                 $this->load->view('login');
